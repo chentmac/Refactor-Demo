@@ -17,11 +17,37 @@ public class Movie {
         return priceCode;
     }
 
-    public void setPriceCode(int priceCode) {
-        this.priceCode = priceCode;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    double getFinalAmount(int daysRented) {
+        double amount = 0;
+        switch (getPriceCode()){
+            case Movie.REGULAR:
+                amount += 2;
+                if(daysRented > 2){
+                    amount+=(daysRented - 2) * 1.5;
+                }
+                break;
+            case Movie.NEW_RELEASE:
+                amount+=daysRented*3;
+                break;
+            case Movie.CHILDRENS:
+                amount+=1.5;
+                if(daysRented > 3){
+                    amount += (daysRented -3)*1.5;
+                }
+                break;
+        }
+        return amount;
+    }
+
+    int getFrequentRentalPoints(int daysRented) {
+        if ((getPriceCode() == Movie.NEW_RELEASE) &&  daysRented> 1) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 }

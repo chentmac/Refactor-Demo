@@ -20,16 +20,11 @@ public class Customer {
     }
 
     public String statement(){
-        int frequentRenterPoints = 0;
         Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while(rentals.hasMoreElements()){
 
             Rental rental = (Rental) rentals.nextElement();
-
-
-            //add frequent renter points
-            frequentRenterPoints += rental.getFrequentRentalPoints();
 
             //show figures for this rental
             result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.getFinalAmount()) + "\n";
