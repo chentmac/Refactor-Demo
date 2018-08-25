@@ -38,7 +38,7 @@ public class Customer {
                 case Movie.NEW_RELEASE:
                     thisAmount+=each.getDayRented()*3;
                     break;
-                    case Movie.CHILDRENS:
+                case Movie.CHILDRENS:
                         thisAmount+=1.5;
                         if(each.getDayRented() > 3){
                             thisAmount += (each.getDayRented() -3)*1.5;
@@ -61,6 +61,7 @@ public class Customer {
         //add footer lines
         result += "Amount owed is" + String.valueOf(totalAmount) + "\n";
         result += "You earned" + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        System.out.println("========================================================"+result);
         return result;
     }
 }
