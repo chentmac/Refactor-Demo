@@ -98,4 +98,31 @@ public class RentalStroeHtmlTest {
                 "<P>You owed<EM>3.0</EM><P>\n" +
                 "On this rental you earned<EM>1</EM> frequent renter points<P>", htmlStatement);
     }
+    @Test
+    public void should_return_correct_htmlstatement_given_customer_has_rent_one_literary_movie_for_1_day() {
+        Movie literaryMovie = new Movie("Sherlock Holmes", 3);
+        Rental oneDayRental = new Rental(literaryMovie, 1);
+        customer.addRental(oneDayRental);
+
+        String htmlStatement = customer.htmlStatement();
+
+        assertEquals("<H1>Rental for <EM>Jerry</EM></H1><P>\n" +
+                "\tSherlock Holmes\t6.0<BR>\n" +
+                "<P>You owed<EM>6.0</EM><P>\n" +
+                "On this rental you earned<EM>1.5</EM> frequent renter points<P>", htmlStatement);
+    }
+
+    @Test
+    public void should_return_correct_htmlstatement_given_customer_has_rent_one_literary_movie_for_2_day() {
+        Movie literaryMovie = new Movie("Sherlock Holmes", 3);
+        Rental twoDayRental = new Rental(literaryMovie, 2);
+        customer.addRental(twoDayRental);
+
+        String htmlStatement = customer.htmlStatement();
+
+        assertEquals("<H1>Rental for <EM>Jerry</EM></H1><P>\n" +
+                "\tSherlock Holmes\t12.0<BR>\n" +
+                "<P>You owed<EM>12.0</EM><P>\n" +
+                "On this rental you earned<EM>1.5</EM> frequent renter points<P>", htmlStatement);
+    }
 }

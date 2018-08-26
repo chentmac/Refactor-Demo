@@ -5,7 +5,7 @@ public class RegularAmount extends Amount{
         return Movie.REGULAR;
     }
 
-    public double getFinalAmout(int daysRented) {
+    public double getFinalAmount(int daysRented) {
         double amount = 2;
         if (daysRented>2){
             amount+=(daysRented-2)*1.5;

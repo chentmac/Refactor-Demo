@@ -26,3 +26,11 @@ Then return "Rental Record for Jerry\n\tSherlock Holmes\t1.5\nAmount owed is1.5\
 Given a child movie name "Sherlock Holmes",rental four day
 When make a statement
 Then return "Rental Record for Jerry\n\tSherlock Holmes\t3.0\nAmount owed is3.0\nYou earned1 frequent renter points".
+#8
+Given a literary movie name "Sherlock Holmes",rental one day
+When make a statement
+Then return "Rental Record for Jerry\n\tSherlock Holmes\t6.0\nAmount owed is6.0\nYou earned1.5 frequent renter points".
+#9
+Given a literary movie name "Sherlock Holmes",rental two day
+When make a statement
+Then return "Rental Record for Jerry\n\tSherlock Holmes\t12.0\nAmount owed is12.0\nYou earned1.5 frequent renter points".

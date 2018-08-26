@@ -11,55 +11,54 @@ public class Customer {
         this.name = name;
     }
 
-    public void addRental(Rental arg){
-        rentals.addElement(arg);
+    public void addRental(Rental rental){
+        rentals.addElement(rental);
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
     public String statement(){
         Enumeration rentals = this.rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
+        StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
         while(rentals.hasMoreElements()){
-
             Rental rental = (Rental) rentals.nextElement();
-
             //show figures for this rental
-            result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.getFinalAmount()) + "\n";
+            result.append("\t").append(rental.getMovie().getTitle()).append("\t").append(String.valueOf(rental.getFinalAmount())).append("\n");
         }
-
         //add footer lines
-        result += "Amount owed is" + String.valueOf(getTotalAmount()) + "\n";
-        result += "You earned" + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
-        return result;
+        result.append("Amount owed is").append(String.valueOf(getTotalAmount())).append("\n");
+        result.append("You earned").append(String.valueOf(getTotalFrequentRenterPoints())).append(" frequent renter points");
+        return result.toString();
     }
     public String htmlStatement(){
         Enumeration rentals = this.rentals.elements();
-        String result = "<H1>Rental for <EM>" + getName() + "</EM></H1><P>\n";
+        StringBuilder result = new StringBuilder("<H1>Rental for <EM>" + getName() + "</EM></H1><P>\n");
         while(rentals.hasMoreElements()){
-
             Rental rental = (Rental) rentals.nextElement();
-
             //show figures for this rental
-            result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.getFinalAmount()) + "<BR>\n";
+            result.append("\t").append(rental.getMovie().getTitle()).append("\t").append(String.valueOf(rental.getFinalAmount())).append("<BR>\n");
         }
-
         //add footer lines
-        result += "<P>You owed<EM>" + String.valueOf(getTotalAmount()) + "</EM><P>\n";
-        result += "On this rental you earned<EM>" + String.valueOf(getTotalFrequentRenterPoints()) + "</EM> frequent renter points<P>";
-        return result;
+        result.append("<P>You owed<EM>").append(String.valueOf(getTotalAmount())).append("</EM><P>\n");
+        result.append("On this rental you earned<EM>").append(getTotalFrequentRenterPoints()).append("</EM> frequent renter points<P>");
+        return result.toString();
     }
 
-    private int getTotalFrequentRenterPoints() {
-        int result = 0;
+    private String getTotalFrequentRenterPoints() {
+        int index=0;
+        double result = 0;
         Enumeration rentals = this.rentals.elements();
         while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += each.getFrequentRentalPoints();
+            Rental rental = (Rental) rentals.nextElement();
+            result += rental.getFrequentRentalPoints();
         }
-        return result;
+        if(String.valueOf(result).endsWith(".0")){
+            index=String.valueOf(result).indexOf(".0");
+            return String.valueOf(result).substring(0,index);
+        }
+        return String.valueOf(result);
     }
 
     private double getTotalAmount() {

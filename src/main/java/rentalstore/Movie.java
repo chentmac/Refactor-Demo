@@ -1,9 +1,10 @@
 package rentalstore;
 
 public class Movie {
-    static final int CHILDRENS = 2;
     static final int REGULAR = 0;
     static final int NEW_RELEASE = 1;
+    static final int CHILDRENS = 2;
+    static final int LITERARY = 3;
 
     private String title;
 
@@ -29,6 +30,9 @@ public class Movie {
             case NEW_RELEASE:
                 amount = new ReleaseAmount();
                 break;
+            case LITERARY:
+                amount = new LiteraryAmount();
+                break;
             default:
                 break;
         }
@@ -39,13 +43,15 @@ public class Movie {
     }
 
     double getFinalAmount(int daysRented) {
-        return amount.getFinalAmout(daysRented);
+        return amount.getFinalAmount(daysRented);
     }
 
-    int getFrequentRentalPoints(int daysRented) {
+    double getFrequentRentalPoints(int daysRented) {
         if ((getPriceCode() == NEW_RELEASE) &&  daysRented> 1) {
             return 2;
-        } else {
+        }else if (getPriceCode()== LITERARY){
+            return 1.5;
+        }else {
             return 1;
         }
     }

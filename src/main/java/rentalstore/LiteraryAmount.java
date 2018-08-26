@@ -1,11 +1,11 @@
 package rentalstore;
 
-public class ReleaseAmount extends Amount{
+public class LiteraryAmount extends Amount {
     int getPriceCode() {
-        return Movie.NEW_RELEASE;
+        return Movie.LITERARY;
     }
 
     public double getFinalAmount(int daysRented) {
-        return daysRented * 3;
+        return 6.0 * daysRented;
     }
 }

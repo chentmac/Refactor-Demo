@@ -101,4 +101,30 @@ public class RentalStoreTest {
                 "You earned1 frequent renter points", statement);
     }
 
+    @Test
+    public void should_return_correct_statement_given_customer_has_rent_one_literary_movie_for_1_day() {
+        Movie literaryMovie = new Movie("Sherlock Holmes", 3);
+        Rental oneDayRental = new Rental(literaryMovie, 1);
+        customer.addRental(oneDayRental);
+
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tSherlock Holmes\t6.0\n" +
+                "Amount owed is6.0\n" +
+                "You earned1.5 frequent renter points", statement);
+    }
+    @Test
+    public void should_return_correct_statement_given_customer_has_rent_one_literary_movie_for_2_day() {
+        Movie literaryMovie = new Movie("Sherlock Holmes", 3);
+        Rental twoDayRental = new Rental(literaryMovie, 2);
+        customer.addRental(twoDayRental);
+
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tSherlock Holmes\t12.0\n" +
+                "Amount owed is12.0\n" +
+                "You earned1.5 frequent renter points", statement);
+    }
 }
