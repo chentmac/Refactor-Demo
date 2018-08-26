@@ -100,4 +100,5 @@ public class RentalStoreTest {
                 "Amount owed is3.0\n" +
                 "You earned1 frequent renter points", statement);
     }
+
 }
