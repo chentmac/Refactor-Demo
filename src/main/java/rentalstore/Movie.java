@@ -34,7 +34,7 @@ public class Movie {
                 amount = new LiteraryAmount();
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("illegal price code");
         }
     }
 

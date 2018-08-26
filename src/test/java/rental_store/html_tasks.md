@@ -61,4 +61,8 @@ When make a htmlStatement
 Then return "<H1>Rental for <EM>Jerry</EM></H1><P>
                  Sherlock Holmes 12.0<BR>
               <P>You owed<EM>12.0</EM><P>
-              On this rental you earned<EM>1.5</EM> frequent renter points<P>"                          
+              On this rental you earned<EM>1.5</EM> frequent renter points<P>"
+           
+#10
+Given a movie that's not a priceCode in class Movie
+Then throw new IllegalArgumentException("illegal price code");                                    
